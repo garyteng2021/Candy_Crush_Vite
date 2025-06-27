@@ -1,1 +1,3 @@
-// Placeholder for README.md"# Candy_Crush_Vite" 
+# Candy Crush Game
+
+A simple match-3 game built with React, TypeScript, TailwindCSS, and Vite.

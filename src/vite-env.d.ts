@@ -1,1 +1,1 @@
-// Placeholder for vite-env.d.ts
+/// <reference types="vite/client" />
