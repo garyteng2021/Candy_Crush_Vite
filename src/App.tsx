@@ -1,9 +1,10 @@
+// file: src/App.tsx
 import React from 'react';
-import GameBoard from './components/GameBoard';
+import { GameBoard } from './components/GameBoard'; // Crypto 风格的组件
 import Leaderboard from './components/Leaderboard';
 import GameOverModal from './components/GameOverModal';
 import useTelegram from './hooks/useTelegram';
-import { useGameLogic } from './utils/gameLogic'; // ✅ 修正路径
+import { useGameLogic } from './utils/gameLogic';
 
 const App: React.FC = () => {
   const userId = useTelegram();
@@ -15,6 +16,9 @@ const App: React.FC = () => {
     movesLeft,
     toggleGame,
     initGame,
+    board,
+    selectedCell,
+    handleCellClick
   } = useGameLogic();
 
   return (
@@ -40,7 +44,13 @@ const App: React.FC = () => {
           </button>
         </div>
 
-        <GameBoard />
+        {/* Crypto UI GameBoard */}
+        <GameBoard
+          board={board}
+          selectedCell={selectedCell}
+          onCellClick={handleCellClick}
+          disabled={!gameActive || gamePaused}
+        />
 
         <Leaderboard />
         <GameOverModal score={score} onRestart={initGame} />
