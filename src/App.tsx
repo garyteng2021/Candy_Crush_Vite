@@ -3,7 +3,7 @@ import GameBoard from './components/GameBoard';
 import Leaderboard from './components/Leaderboard';
 import GameOverModal from './components/GameOverModal';
 import useTelegram from './hooks/useTelegram';
-import { useGameLogic } from './hooks/gameLogic';
+import { useGameLogic } from './utils/gameLogic'; // ✅ 修正路径
 
 const App: React.FC = () => {
   const userId = useTelegram();
