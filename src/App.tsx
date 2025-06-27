@@ -1,6 +1,5 @@
-// file: src/App.tsx
 import React from 'react';
-import { GameBoard } from './components/GameBoard'; // Crypto 风格的组件
+import { GameBoard } from './components/GameBoard';
 import Leaderboard from './components/Leaderboard';
 import GameOverModal from './components/GameOverModal';
 import useTelegram from './hooks/useTelegram';
@@ -44,7 +43,6 @@ const App: React.FC = () => {
           </button>
         </div>
 
-        {/* Crypto UI GameBoard */}
         <GameBoard
           board={board}
           selectedCell={selectedCell}
