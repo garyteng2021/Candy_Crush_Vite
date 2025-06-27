@@ -1,7 +1,10 @@
+// file: src/utils/gameLogic.ts
 import { useState, useEffect, useRef } from 'react';
+import { Cell as UICell } from '../types/game';
 
 export const GRID_SIZE = 8;
 export const COLORS = ['#e74c3c', '#f1c40f', '#3498db', '#9b59b6', '#2ecc71'];
+export const SYMBOLS = ['🍒', '🍋', '🍇', '🍉', '🍊'];
 export const POINTS_PER_BLOCK = 10;
 export const GAME_TIME = 60;
 export const MAX_MOVES = 30;
@@ -30,9 +33,10 @@ export function useGameLogic() {
     setGameActive(false);
     setGamePaused(true);
     clearInterval(timer.current);
+    setSelectedCell(null);
   };
 
-  const createInitialGrid = () => {
+  const createInitialGrid = (): number[][] => {
     const newGrid: number[][] = [];
     for (let row = 0; row < GRID_SIZE; row++) {
       newGrid[row] = [];
@@ -72,6 +76,19 @@ export function useGameLogic() {
     }
   };
 
+  // === 新增：将 grid 映射为 UI 组件用的 board 格式 ===
+  const board: UICell[][] = grid.map(row =>
+    row.map(index => ({
+      symbol: SYMBOLS[index],
+      color: COLORS[index],
+    }))
+  );
+
+  const handleCellClick = (row: number, col: number) => {
+    setSelectedCell({ row, col });
+    // TODO: 在这里添加消除或交换逻辑
+  };
+
   useEffect(() => {
     initGame();
     return () => clearInterval(timer.current);
@@ -91,6 +108,8 @@ export function useGameLogic() {
     setGrid,
     setScore,
     setMovesLeft,
-    setGameActive
+    setGameActive,
+    board,
+    handleCellClick,
   };
 }
