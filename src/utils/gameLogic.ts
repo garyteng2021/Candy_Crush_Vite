@@ -85,9 +85,28 @@ export function useGameLogic() {
   );
 
   const handleCellClick = (row: number, col: number) => {
+  if (!selectedCell) {
     setSelectedCell({ row, col });
-    // TODO: 在这里添加消除或交换逻辑
-  };
+  } else {
+    const areAdjacent =
+      (Math.abs(selectedCell.row - row) === 1 && selectedCell.col === col) ||
+      (Math.abs(selectedCell.col - col) === 1 && selectedCell.row === row);
+
+    if (areAdjacent) {
+      const newGrid = grid.map(r => [...r]);
+      const temp = newGrid[selectedCell.row][selectedCell.col];
+      newGrid[selectedCell.row][selectedCell.col] = newGrid[row][col];
+      newGrid[row][col] = temp;
+
+      if (hasMatch(newGrid)) {
+        setGrid(newGrid);
+        setMovesLeft(prev => prev - 1);
+        setScore(prev => prev + POINTS_PER_BLOCK);
+      }
+    }
+    setSelectedCell(null);
+  }
+};
 
   useEffect(() => {
     initGame();
