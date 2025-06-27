@@ -104,15 +104,39 @@ export function useGameLogic() {
         setScore(prev => prev + POINTS_PER_BLOCK);
       }
     }
+
     setSelectedCell(null);
   }
 };
-
+  
   useEffect(() => {
     initGame();
     return () => clearInterval(timer.current);
   }, []);
 
+function hasMatch(grid: number[][]): boolean {
+  for (let row = 0; row < GRID_SIZE; row++) {
+    for (let col = 0; col < GRID_SIZE - 2; col++) {
+      const val = grid[row][col];
+      if (val === grid[row][col + 1] && val === grid[row][col + 2]) {
+        return true;
+      }
+    }
+  }
+
+  for (let col = 0; col < GRID_SIZE; col++) {
+    for (let row = 0; row < GRID_SIZE - 2; row++) {
+      const val = grid[row][col];
+      if (val === grid[row + 1][col] && val === grid[row + 2][col]) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+  
   return {
     grid,
     score,
