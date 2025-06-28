@@ -1,5 +1,9 @@
-import { defineConfig } from 'vite';
-
+// vite.config.ts
 export default defineConfig({
-  base: './', // 保证部署相对路径
+  plugins: [react()],
+  preview: {
+    host: true,
+    port: 3000,
+    allowedHosts: ['candycrushvite-production.up.railway.app']
+  }
 });
