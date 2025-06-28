@@ -1,0 +1,86 @@
+/* === src/styles/game.css === */
+
+/* 全局样式 */
+body {
+  @apply font-sans min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-400 to-purple-600 text-white;
+}
+
+/* 游戏主容器 */
+.game-container {
+  @apply bg-white/10 backdrop-blur-lg rounded-2xl p-6 shadow-xl border border-white/20;
+}
+
+/* 标题区 */
+.game-header {
+  @apply text-center mb-6;
+}
+
+.game-title {
+  @apply text-4xl font-bold drop-shadow mb-2;
+}
+
+/* 状态栏 */
+.game-stats {
+  @apply flex justify-between font-semibold text-lg mb-6 gap-2;
+}
+
+.stat-item {
+  @apply bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm;
+}
+
+/* 画布样式 */
+#gameCanvas {
+  @apply border-4 border-white/30 rounded-xl bg-white/10 mx-auto block cursor-grab;
+}
+
+#gameCanvas:active {
+  cursor: grabbing;
+}
+
+/* 游戏结束遮罩层 */
+.game-over {
+  @apply fixed inset-0 bg-black/80 hidden justify-center items-center z-50;
+}
+
+.game-over-content {
+  @apply bg-white text-gray-800 p-10 rounded-2xl text-center shadow-2xl max-w-sm w-full;
+}
+
+.game-over h2 {
+  @apply text-2xl text-indigo-500 font-bold mb-4;
+}
+
+.final-score {
+  @apply text-4xl font-bold text-purple-600 my-4;
+}
+
+.restart-btn {
+  @apply bg-gradient-to-br from-indigo-400 to-purple-600 text-white px-6 py-3 rounded-full text-lg transition-transform hover:scale-105;
+}
+
+/* 响应式 */
+@media (max-width: 600px) {
+  .game-container {
+    @apply p-4 mx-2;
+  }
+
+  .game-title {
+    @apply text-2xl;
+  }
+
+  .game-stats {
+    @apply text-base;
+  }
+
+  #gameCanvas {
+    max-width: 100%;
+  }
+}
+
+/* 补充样式 */
+.canvas-cell {
+  transition: transform 0.1s;
+}
+.canvas-cell:hover {
+  transform: scale(1.05);
+}
