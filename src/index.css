@@ -1,3 +1,5 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import './styles/game.css'; /* 确保路径正确 */
