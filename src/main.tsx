@@ -1,12 +1,10 @@
-import React from 'react';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+import './index.css';
 
-const MainMenu: React.FC = () => {
-  return (
-    <div className="main-menu">
-      <h1>Crypto Crush Saga</h1>
-      <button>Start Game</button>
-    </div>
-  );
-};
-
-export default MainMenu;
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
