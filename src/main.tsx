@@ -1,11 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './styles/game.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root')!);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const MainMenu: React.FC = () => {
+  return (
+    <div className="main-menu">
+      <h1>Crypto Crush Saga</h1>
+      <button>Start Game</button>
+    </div>
+  );
+};
+
+export default MainMenu;
